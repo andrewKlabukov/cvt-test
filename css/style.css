@@ -355,8 +355,9 @@ li {
     padding-top: 15px;
     display: inline-flex;
 }
-.checkbox label p {
+.checkbox label span {
     font-size: 16px;
+    vertical-align: middle;
 }
 .checkbox input[type="checkbox"] {
     opacity: 0;
