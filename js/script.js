@@ -5,9 +5,6 @@ const loginInput = document.querySelector('.popup input')
 const passwordInput = document.querySelector('.popup [type=password]')
 const rememberMeLabel = document.querySelector('[for=checkbox-1]')
 const rememberMeCheckbox = document.querySelector('[type=checkbox]')
-// let localstorageLogin = localStorage.getItem('login')
-// let localStoragePass = localStorage.getItem('password')
-// let isLoggedIn = false
 
 // Событие на чекбоксе
 rememberMeLabel.addEventListener('click', event => {
@@ -41,10 +38,9 @@ popUpBtn.addEventListener('click', event => {
     if(rememberMeCheckbox.checked){
         localStorage.setItem('login', loginValue)
         localStorage.setItem('password', passwordValue)        
-    } else {
-        alert('Нужно поставить галочку чтобы сохранить логин и пароль')
-        localStorage.removeItem('login')
-        localStorage.removeItem('password')
+    } else {        
+        isLoggedOut();
+        console.log('exit!')
     }    
     
     document.querySelector('.header-btn').insertAdjacentHTML('beforebegin', `<p class="user-name">${localStorage.getItem('login')}</p>`);
@@ -56,8 +52,8 @@ loginButton.addEventListener('click', event => {
     isLogedIn();
     showModal();
     isLoggedOut();
-    loginInput.value = localStorage.getItem('login');  
-    passwordInput.value = localStorage.getItem('password');  
+    // loginInput.value = localStorage.getItem('login');  
+    // passwordInput.value = localStorage.getItem('password');  
 })
 
 function isLogedIn(event) {
@@ -66,9 +62,8 @@ function isLogedIn(event) {
         loginButton.value = 'выйти';
     }
 }
-
-function isLoggedOut(event) {   
-    console.log('exit')
+// Функция 
+function isLoggedOut(event) {    
     if (!loginButton.classList.contains('header-btn1')){
         loginButton.value = 'войти';
         hideModal();
@@ -79,12 +74,10 @@ function isLoggedOut(event) {
 // Функция добавляет убирает класс поп апу
 function showModal() {
     popUp.classList.add('popup')
-    popUp.classList.add('popup-visible')
-    console.log('in')
+    popUp.classList.add('popup-visible')    
 }
 
-// Функция 
+// Функция скрыть поп ап
 function hideModal() {
-    popUp.classList.remove('popup-visible')
-    console.log('out')
+    popUp.classList.remove('popup-visible')    
 }
